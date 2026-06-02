@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>중간지점 — 우리 어디서 볼까?</title>
+<meta name="description" content="서울에서 친구들과 만날 중간지점을 찾아드려요. 각자 집과 회사 위치를 입력하면 모두에게 공평한 중간 동네의 맛집·카페를 추천해드립니다."/>
+<meta name="keywords" content="중간지점, 서울 중간지점, 약속장소 추천, 만남의 장소, 중간 장소 찾기, 맛집 추천, 카페 추천"/>
+<meta name="author" content="MidPoint"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://ls-blue.github.io/midpoint/"/>
+<!-- Open Graph (카카오/페이스북 공유) -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="중간지점 — 우리 어디서 볼까?"/>
+<meta property="og:description" content="각자 위치를 입력하면 모두에게 공평한 중간 동네의 맛집·카페를 추천해드려요."/>
+<meta property="og:url" content="https://ls-blue.github.io/midpoint/"/>
+<meta property="og:site_name" content="MidPoint"/>
+<meta property="og:image" content="https://ls-blue.github.io/midpoint/og-image.png"/>
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="중간지점 — 우리 어디서 볼까?"/>
+<meta name="twitter:description" content="각자 위치를 입력하면 모두에게 공평한 중간 동네의 맛집·카페를 추천해드려요."/>
+<!-- 네이버 서치어드바이저 (나중에 인증 코드 교체) -->
+<meta name="naver-site-verification" content="NAVER_VERIFICATION_CODE"/>
+<!-- 구글 서치콘솔 (나중에 인증 코드 교체) -->
+<meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE"/>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
+<style>
+:root{--bg:#faf7f2;--bg-elev:#fff;--ink:#1a1a1a;--ink-soft:#5a5a5a;--ink-mute:#999;--line:#ececec;--accent:#ff6b4a;--accent-soft:#ffe9e2;--warm:#f4ede1;--cool:#e8f4f8;--cool-ink:#2987a3;--shadow-sm:0 1px 2px rgba(0,0,0,.04);--shadow-md:0 8px 24px rgba(0,0,0,.06);--shadow-lg:0 24px 60px rgba(0,0,0,.08);--radius-sm:10px;--radius-md:16px;--radius-lg:24px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+body{min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(circle at 12% 18%,rgba(255,107,74,.08),transparent 40%),radial-gradient(circle at 88% 12%,rgba(255,200,100,.10),transparent 38%),radial-gradient(circle at 50% 90%,rgba(120,180,220,.06),transparent 45%);pointer-events:none;z-index:0}
+.page{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:48px 32px 96px}
+nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.02em}
+.logo-mark{width:28px;height:28px;border-radius:8px;background:var(--ink);color:white;display:grid;place-items:center;font-size:14px;font-weight:800}
+.nav-links{display:flex;gap:28px;font-size:14px;color:var(--ink-soft)}
+.nav-links a{color:inherit;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-restart{padding:8px 14px;background:var(--bg-elev);border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink-soft);transition:all .2s;display:none}
+.nav-restart:hover{border-color:var(--ink);color:var(--ink)}
+.nav-restart.show{display:block}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:start;margin-bottom:80px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;background:var(--accent-soft);color:var(--accent);border-radius:999px;font-size:12px;font-weight:600;margin-bottom:24px}
+.eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.4)}}
+h1{font-size:clamp(36px,5.4vw,60px);font-weight:800;letter-spacing:-.04em;line-height:1.04;margin-bottom:24px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),#ffa55c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:18px;line-height:1.6;color:var(--ink-soft);max-width:460px;margin-bottom:32px}
+.stats{display:flex;gap:32px;padding-top:24px;border-top:1px solid var(--line)}
+.stat-num{font-size:28px;font-weight:800;letter-spacing:-.03em}
+.stat-label{font-size:12px;color:var(--ink-mute);margin-top:4px}
+.card{background:var(--bg-elev);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-lg);border:1px solid var(--line);position:relative}
+.card-corner{position:absolute;top:-14px;right:24px;background:var(--ink);color:white;padding:6px 14px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.05em}
+.card-corner.accent{background:var(--accent)}
+.card-title{font-size:14px;font-weight:600;color:var(--ink-mute);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}
+.card-headline{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.3;margin-bottom:24px}
+.view{display:none}
+.view.active{display:block;animation:fadeUp .4s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.num-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px}
+.num-btn{padding:16px 8px;background:var(--bg);border:1.5px solid var(--line);border-radius:var(--radius-md);font-family:inherit;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.num-btn .num{font-size:22px;font-weight:800;letter-spacing:-.02em}
+.num-btn .label{font-size:11px;color:var(--ink-mute);font-weight:500}
+.num-btn:hover{border-color:var(--ink)}
+.num-btn.selected{background:var(--ink);border-color:var(--ink);color:white}
+.num-btn.selected .label{color:rgba(255,255,255,.65)}
+.helper-text{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-bottom:20px;padding:14px 16px;background:var(--warm);border-radius:var(--radius-sm)}
+.input-group{position:relative;margin-bottom:12px}
+.input-group label{position:absolute;top:14px;left:56px;font-size:11px;font-weight:600;color:var(--ink-mute);text-transform:uppercase;letter-spacing:.08em;pointer-events:none}
+.input-group input{width:100%;padding:32px 20px 16px 56px;border:1.5px solid var(--line);border-radius:var(--radius-md);font-size:16px;font-weight:600;font-family:inherit;background:var(--bg);transition:border-color .2s,background .2s;outline:none;color:var(--ink)}
+.input-group input:focus{border-color:var(--ink);background:white}
+.input-group .input-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:700}
+.input-group.home .input-icon{background:var(--cool);color:var(--cool-ink)}
+.input-group.work .input-icon{background:var(--accent-soft);color:var(--accent)}
+.input-group.name .input-icon{background:#ecedf2;color:#555}
+.input-group.compact input{padding:14px 18px 14px 50px;font-size:15px}
+.input-group.compact label{display:none}
+.input-group.compact .input-icon{width:24px;height:24px;left:16px;font-size:12px}
+.primary-btn{width:100%;padding:18px;background:var(--ink);color:white;border:none;border-radius:var(--radius-md);font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;transition:transform .15s,background .2s;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:-.01em}
+.primary-btn:hover{background:var(--accent);transform:translateY(-1px)}
+.primary-btn:active{transform:translateY(0)}
+.primary-btn:disabled{background:var(--line);color:var(--ink-mute);cursor:not-allowed;transform:none}
+.primary-btn .arrow{transition:transform .2s}
+.primary-btn:hover:not(:disabled) .arrow{transform:translateX(4px)}
+.swap-btn{width:100%;margin:4px 0;padding:8px;background:none;border:none;color:var(--ink-mute);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;font-family:inherit;transition:color .2s}
+.swap-btn:hover{color:var(--ink)}
+.suggestions{margin-top:12px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:6px}
+.suggestion-chip{padding:6px 12px;border-radius:999px;background:var(--warm);font-size:12px;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all .2s;font-family:inherit;color:var(--ink-soft)}
+.suggestion-chip:hover{border-color:var(--ink);color:var(--ink)}
+.autocomplete{position:absolute;left:0;right:0;top:calc(100% + 4px);background:white;border-radius:var(--radius-md);border:1px solid var(--line);box-shadow:var(--shadow-md);z-index:10;max-height:240px;overflow-y:auto;display:none}
+.autocomplete.show{display:block}
+.ac-item{padding:12px 20px;cursor:pointer;font-size:14px;display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.ac-item:hover,.ac-item.active{background:var(--bg)}
+.ac-item strong{font-weight:700}
+.ac-item span{color:var(--ink-mute);font-size:12px}
+.room-status{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px dashed var(--line)}
+.room-status-text{font-size:13px;color:var(--ink-soft)}
+.room-status-text strong{color:var(--ink);font-weight:800;font-size:15px}
+.progress-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--accent-soft);color:var(--accent);border-radius:999px;font-size:12px;font-weight:700}
+.progress-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.progress-pill.complete{background:#e8f7ed;color:#1f8a3d}
+.progress-pill.complete::before{background:#1f8a3d}
+.sync-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#1f8a3d;font-weight:600}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:#1f8a3d;animation:sb 1.5s infinite}
+@keyframes sb{0%,100%{opacity:1}50%{opacity:.3}}
+.participants{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.participant{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--line);border-radius:var(--radius-md);transition:all .2s}
+.participant.me{background:linear-gradient(120deg,var(--accent-soft),var(--warm));border-color:var(--accent)}
+.participant.pending{background:transparent;border-style:dashed;color:var(--ink-mute)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center;font-size:14px;font-weight:700;flex-shrink:0}
+.participant.pending .avatar{background:var(--line);color:var(--ink-mute)}
+.participant-info{flex:1;min-width:0}
+.participant-name{font-size:15px;font-weight:700;margin-bottom:2px}
+.me-badge{display:inline-block;padding:1px 6px;background:var(--accent);color:white;border-radius:4px;font-size:10px;font-weight:700;margin-left:4px;vertical-align:middle;letter-spacing:.04em}
+.participant-locs{font-size:13px;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.participant-locs .dot{margin:0 6px;color:var(--ink-mute)}
+.participant-remove{background:none;border:none;color:var(--ink-mute);font-size:16px;cursor:pointer;padding:4px;transition:color .2s}
+.participant-remove:hover{color:var(--accent)}
+.divider{display:flex;align-items:center;gap:12px;margin:24px 0 16px;color:var(--ink-mute);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--line)}
+.share-box{padding:16px;background:var(--bg);border-radius:var(--radius-md);border:1px dashed var(--line);margin-bottom:16px}
+.share-label{font-size:12px;font-weight:700;color:var(--ink-mute);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.share-row{display:flex;gap:8px}
+.share-row input{flex:1;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:12px;background:white;color:var(--ink-soft);outline:none;min-width:0}
+.share-row input:focus{border-color:var(--ink)}
+.copy-btn{padding:10px 16px;background:var(--ink);color:white;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s}
+.copy-btn:hover{background:var(--accent)}
+.copy-btn.copied{background:#1f8a3d}
+.share-hint{margin-top:8px;font-size:12px;color:var(--ink-mute);line-height:1.5}
+.results{margin-top:80px;display:none;animation:slideUp .5s cubic-bezier(.16,1,.3,1)}
+.results.show{display:block}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.results-header{text-align:center;margin-bottom:48px}
+.results-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}
+.results-header h2 .pin{background:linear-gradient(120deg,transparent 60%,var(--accent-soft) 60%);padding:0 4px}
+.results-meta{color:var(--ink-soft);font-size:15px}
+.results-meta strong{color:var(--ink)}
+.participants-summary{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px;margin-bottom:8px}
+.p-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 4px;background:white;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:600}
+.p-chip .avatar{width:22px;height:22px;font-size:10px}
+.spot-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.spot-tab{padding:12px 20px;border-radius:999px;background:white;border:1.5px solid var(--line);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:8px}
+.spot-tab:hover{border-color:var(--ink)}
+.spot-tab.active{background:var(--ink);color:white;border-color:var(--ink)}
+.spot-tab .distance{font-size:11px;color:var(--ink-mute);font-weight:500}
+.spot-tab.active .distance{color:rgba(255,255,255,.7)}
+.spot-content{display:none}
+.spot-content.active{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.spot-hero{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;margin-bottom:48px;background:white;padding:32px;border-radius:var(--radius-lg);border:1px solid var(--line)}
+.spot-hero-left h3{font-size:32px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.spot-hero-left p{color:var(--ink-soft);line-height:1.6;margin-bottom:16px}
+.spot-vibes{display:flex;flex-wrap:wrap;gap:6px}
+.vibe-tag{padding:4px 10px;background:var(--warm);border-radius:6px;font-size:12px;font-weight:500;color:var(--ink-soft)}
+/* 카카오맵 */
+.map-panel{border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.kakao-map-box{width:100%;height:300px;background:#e8e1d3;position:relative}
+.map-links{display:flex;border-top:1px solid var(--line)}
+.map-link-btn{flex:1;padding:10px 8px;text-align:center;font-size:12px;font-weight:700;text-decoration:none;transition:background .2s}
+.map-link-btn:first-child{background:#FEE500;color:#3C1E1E;border-right:1px solid var(--line)}
+.map-link-btn:first-child:hover{background:#f5d800}
+.map-link-btn:last-child{background:#03C75A;color:white}
+.map-link-btn:last-child:hover{background:#02b04e}
+.map-no-key{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;color:var(--ink-mute);font-size:13px;padding:20px;text-align:center}
+.map-no-key a{color:var(--accent);font-size:12px}
+.category{margin-bottom:56px}
+.category-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid var(--ink)}
+.category-title{display:flex;align-items:center;gap:12px}
+.category-title h4{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.category-icon{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-size:16px}
+.category-icon.food{background:var(--accent-soft)}
+.category-icon.cafe{background:var(--cool)}
+.category-count{font-size:13px;color:var(--ink-mute);font-weight:500}
+.place-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.place-card{background:white;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--line);transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;cursor:pointer;display:flex;flex-direction:column}
+.place-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.place-rank{padding:12px 16px 0;font-size:11px;font-weight:700;color:var(--ink-mute);letter-spacing:.1em}
+.place-body{padding:8px 16px 16px;flex:1;display:flex;flex-direction:column}
+.place-name{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px}
+.place-genre{font-size:12px;color:var(--ink-mute);margin-bottom:10px}
+.place-desc{font-size:13px;line-height:1.55;color:var(--ink-soft);margin-bottom:12px;flex:1}
+.place-tags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:12px}
+.place-tag{padding:2px 8px;background:var(--bg);border-radius:4px;font-size:11px;color:var(--ink-soft)}
+.place-meta{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--line);font-size:12px}
+.place-rating{display:flex;align-items:center;gap:4px;font-weight:700}
+.place-rating .star{color:#f5b400}
+.place-price{color:var(--ink-mute);font-weight:500}
+footer{margin-top:96px;padding-top:32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-mute)}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:white;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:100}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:860px){
+  .page{padding:24px 20px 64px}
+  nav{margin-bottom:32px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;gap:32px;margin-bottom:48px}
+  .card{padding:24px}
+  .spot-hero{grid-template-columns:1fr;padding:24px}
+  .kakao-map-box{height:240px}
+  .stats{gap:24px}
+  .stat-num{font-size:22px}
+}
+
+  /* ── 투표 ── */
+  .vote-section{margin-top:32px;padding:24px;background:var(--bg);border-radius:var(--radius-lg);border:1px solid var(--line)}
+  .vote-title{font-size:14px;font-weight:700;letter-spacing:.05em;color:var(--ink);margin-bottom:6px}
+  .vote-desc{font-size:12px;color:var(--ink-mute);margin-bottom:20px;line-height:1.5}
+  .vote-list{display:flex;flex-direction:column;gap:10px}
+  .vote-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:white;border:1.5px solid var(--line);border-radius:var(--radius-md);transition:all .2s;cursor:pointer}
+  .vote-item:hover{border-color:var(--ink-soft)}
+  .vote-item.my-vote-1{border-color:#ff6b4a;background:linear-gradient(120deg,#ffe9e2,#fff9f7)}
+  .vote-item.my-vote-2{border-color:#2987a3;background:linear-gradient(120deg,#e8f4f8,#f7fcff)}
+  .vote-item.my-vote-3{border-color:#7c5cd6;background:linear-gradient(120deg,#f0ebff,#faf8ff)}
+  .vote-rank-badge{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;flex-shrink:0;background:var(--line);color:var(--ink-mute)}
+  .vote-item.my-vote-1 .vote-rank-badge{background:#ff6b4a;color:white}
+  .vote-item.my-vote-2 .vote-rank-badge{background:#2987a3;color:white}
+  .vote-item.my-vote-3 .vote-rank-badge{background:#7c5cd6;color:white}
+  .vote-place-name{flex:1;font-size:14px;font-weight:600;color:var(--ink)}
+  .vote-place-genre{font-size:11px;color:var(--ink-mute);margin-top:1px}
+  .vote-bar-wrap{width:80px;flex-shrink:0}
+  .vote-bar-bg{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:3px}
+  .vote-bar-fill{height:100%;border-radius:3px;background:var(--accent);transition:width .5s cubic-bezier(.16,1,.3,1)}
+  .vote-bar-label{font-size:10px;color:var(--ink-mute);text-align:right}
+  .vote-btn-row{display:flex;gap:6px;margin-top:6px}
+  .vote-btn{padding:4px 10px;border-radius:999px;border:1.5px solid var(--line);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;background:white;transition:all .15s;color:var(--ink-mute)}
+  .vote-btn:hover{border-color:var(--ink);color:var(--ink)}
+  .vote-btn.active-1{background:#ff6b4a;border-color:#ff6b4a;color:white}
+  .vote-btn.active-2{background:#2987a3;border-color:#2987a3;color:white}
+  .vote-btn.active-3{background:#7c5cd6;border-color:#7c5cd6;color:white}
+  .vote-voters{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+  .vote-voter-chip{padding:2px 8px;border-radius:999px;font-size:10px;font-weight:600;background:var(--warm);color:var(--ink-soft)}
+  .vote-voter-chip.rank-1{background:#ffe9e2;color:#ff6b4a}
+  .vote-voter-chip.rank-2{background:#e8f4f8;color:#2987a3}
+  .vote-voter-chip.rank-3{background:#f0ebff;color:#7c5cd6}
+  .vote-result-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .vote-result-summary{font-size:12px;color:var(--ink-mute)}
+  .vote-tabs{display:flex;gap:6px;margin-bottom:16px}
+  .vote-tab{padding:6px 14px;border-radius:999px;border:1.5px solid var(--line);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;background:white;color:var(--ink-mute);transition:all .2s}
+  .vote-tab.active{background:var(--ink);color:white;border-color:var(--ink)}
+
+
+  /* ── 투표 버튼 ── */
+  .vote-area{margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+  .vote-label{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:8px}
+  .vote-btn-row{display:flex;gap:6px}
+  .vote-btn{
+    width:36px;height:36px;border-radius:50%;border:2px solid var(--line);
+    font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;
+    background:var(--bg);color:var(--ink-mute);transition:all .18s;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .vote-btn:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.08)}
+  .vote-btn.v1{background:#1a1a1a;border-color:#1a1a1a;color:white;box-shadow:0 2px 8px rgba(26,26,26,.3)}
+  .vote-btn.v2{background:#ff6b4a;border-color:#ff6b4a;color:white;box-shadow:0 2px 8px rgba(255,107,74,.3)}
+  .vote-btn.v3{background:#888;border-color:#888;color:white;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  .vote-map-btn{
+    width:36px;height:36px;border-radius:50%;border:1.5px solid var(--line);
+    font-size:14px;cursor:pointer;background:var(--bg);
+    display:flex;align-items:center;justify-content:center;text-decoration:none;
+    transition:all .18s;margin-left:4px;flex-shrink:0;
+  }
+  .vote-map-btn:hover{border-color:var(--ink-soft);transform:scale(1.08)}
+  /* 투표된 카드 */
+  .place-card.voted-1{border-color:#1a1a1a;border-width:2px}
+  .place-card.voted-2{border-color:#ff6b4a;border-width:2px}
+  .place-card.voted-3{border-color:#aaa;border-width:2px}
+  /* 카드 상단 순위 뱃지 */
+  .vote-rank-tag{
+    display:none;position:absolute;top:10px;right:10px;
+    width:24px;height:24px;border-radius:50%;
+    font-size:12px;font-weight:800;color:white;
+    align-items:center;justify-content:center;
+  }
+  .place-card.voted-1 .vote-rank-tag{display:flex;background:#1a1a1a}
+  .place-card.voted-2 .vote-rank-tag{display:flex;background:#ff6b4a}
+  .place-card.voted-3 .vote-rank-tag{display:flex;background:#aaa}
+  /* 투표자 칩 */
+  .vote-voters{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;min-height:4px}
+  .v-chip{
+    display:inline-flex;align-items:center;gap:3px;
+    padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700;
+  }
+  .v-chip-1{background:#1a1a1a;color:white}
+  .v-chip-2{background:#ff6b4a;color:white}
+  .v-chip-3{background:#888;color:white}
+  /* 결과 배너 */
+  .vote-result-wrap{margin-top:16px}
+  .vote-result-banner{padding:16px 18px;background:var(--bg-elev);border-radius:var(--radius-md);border:1px solid var(--line)}
+  .vote-result-title{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:12px}
+  .vote-result-list{display:flex;flex-direction:column;gap:6px}
+  .vote-result-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:white;border-radius:var(--radius-md);border:1.5px solid var(--line)}
+  .vote-result-item.rank-1{border-color:#1a1a1a}
+  .vote-result-item.rank-2{border-color:#ff6b4a}
+  .vote-result-item.rank-3{border-color:#aaa}
+  .vote-result-num{
+    width:26px;height:26px;border-radius:50%;
+    font-size:13px;font-weight:800;color:white;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .rank-1 .vote-result-num{background:#1a1a1a}
+  .rank-2 .vote-result-num{background:#ff6b4a}
+  .rank-3 .vote-result-num{background:#aaa}
+  .vote-result-name{flex:1;font-size:13px;font-weight:700;color:var(--ink)}
+  .vote-result-voters{font-size:11px;color:var(--ink-mute);margin-top:1px}
+  .vote-result-score{font-size:11px;font-weight:700;color:var(--ink-mute);flex-shrink:0}
+
+
+  .vote-result-wrap{margin-top:12px}
+  .vote-result-banner{padding:18px;background:linear-gradient(135deg,#fff9f5,#f4ede1);border-radius:var(--radius-md);border:1px solid var(--line);margin-bottom:8px}
+  .vote-result-title{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--ink-mute);text-transform:uppercase;margin-bottom:12px}
+  .vote-result-list{display:flex;flex-direction:column;gap:8px}
+  .vote-result-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:white;border-radius:var(--radius-md);border:1.5px solid var(--line);transition:all .2s}
+  .vote-result-item.rank-1{border-color:#ff6b4a;background:linear-gradient(120deg,#fff5f3,white)}
+  .vote-result-item.rank-2{border-color:#2987a3;background:linear-gradient(120deg,#f3fafd,white)}
+  .vote-result-item.rank-3{border-color:#7c5cd6;background:linear-gradient(120deg,#f7f4ff,white)}
+  .vote-result-medal{font-size:22px;flex-shrink:0;width:28px;text-align:center;line-height:1.3}
+  .vote-result-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px}
+  .vote-result-voters{font-size:11px;color:var(--ink-soft);line-height:1.5}
+  .vote-result-score{font-size:12px;font-weight:700;color:var(--ink-mute);flex-shrink:0;padding-top:2px}
+
+  /* ── 로그인 ── */
+  .auth-bar{display:flex;align-items:center;gap:10px}
+  .auth-user{display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--bg-elev);border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;color:var(--ink)}
+  .auth-avatar{width:24px;height:24px;border-radius:50%;object-fit:cover;flex-shrink:0}
+  .auth-avatar-placeholder{width:24px;height:24px;border-radius:50%;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+  .auth-login-btn{display:flex;align-items:center;gap:7px;padding:8px 16px;background:var(--bg-elev);border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink-soft);transition:all .2s}
+  .auth-login-btn:hover{border-color:var(--ink);color:var(--ink)}
+  .auth-login-btn svg{flex-shrink:0}
+  .auth-logout-btn{padding:6px 12px;background:none;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink-mute);transition:all .2s}
+  .auth-logout-btn:hover{border-color:var(--accent);color:var(--accent)}
+  /* 로그인 모달 */
+  .auth-modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+  .auth-modal-bg.show{opacity:1;pointer-events:all}
+  .auth-modal{background:var(--bg-elev);border-radius:var(--radius-lg);padding:40px 36px;max-width:400px;width:90%;box-shadow:var(--shadow-lg);border:1px solid var(--line);text-align:center}
+  .auth-modal-logo{width:48px;height:48px;border-radius:12px;background:var(--ink);color:white;display:grid;place-items:center;font-size:22px;font-weight:800;margin:0 auto 20px}
+  .auth-modal h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .auth-modal p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:28px}
+  .auth-google-btn{width:100%;padding:14px;background:white;border:1.5px solid var(--line);border-radius:var(--radius-md);font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px}
+  .auth-google-btn:hover{border-color:var(--ink);box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+  .auth-skip{margin-top:14px;font-size:12px;color:var(--ink-mute);cursor:pointer;background:none;border:none;font-family:inherit;text-decoration:underline;text-underline-offset:3px}
+  .auth-skip:hover{color:var(--ink)}
+
+</style>
+<body>
+<div class="page">
+  <nav>
+    <div class="logo"><div class="logo-mark">M</div><span>MidPoint</span></div>
+    <div class="nav-links"><a href="#">소개</a><a href="#">동네 둘러보기</a><a href="#">팀</a></div>
+    <div class="auth-bar" id="authBar">
+      <button class="auth-login-btn" id="loginBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        로그인
+      </button>
+    </div>
+    <button class="nav-restart" id="restartBtn">새로 시작</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow">중간지점 약속 잡기</div>
+      <h1>모두에게<br/>공평한 <em>중간</em>,<br/>한 번에 정해요.</h1>
+      <p class="lede">혼자서도, 친구 여러 명과도. 각자의 집과 회사를 입력하면 모두에게 가까운 핫플레이스의 맛집·카페까지 한 번에 추천해요.</p>
+      <div class="stats">
+        <div><div class="stat-num">2~6명</div><div class="stat-label">함께 약속 가능</div></div>
+        <div><div class="stat-num">15+</div><div class="stat-label">서울 인기 동네</div></div>
+        <div><div class="stat-num">150+</div><div class="stat-label">큐레이션 맛집·카페</div></div>
+      </div>
+    </div>
+
+    <div class="card" id="actionCard">
+      <div class="card-corner" id="cardCorner">START</div>
+
+      <!-- VIEW: SETUP -->
+      <div class="view active" id="view-setup">
+        <div class="card-title">STEP 1 · 인원 선택</div>
+        <div class="card-headline">몇 명이서 만나시나요?</div>
+        <div class="num-grid">
+          <button class="num-btn" data-n="1"><span class="num">1</span><span class="label">혼자</span></button>
+          <button class="num-btn selected" data-n="2"><span class="num">2</span><span class="label">둘이서</span></button>
+          <button class="num-btn" data-n="3"><span class="num">3</span><span class="label">셋이서</span></button>
+          <button class="num-btn" data-n="4"><span class="num">4</span><span class="label">넷이서</span></button>
+          <button class="num-btn" data-n="5"><span class="num">5</span><span class="label">다섯</span></button>
+          <button class="num-btn" data-n="6"><span class="num">6</span><span class="label">여섯</span></button>
+        </div>
+        <div class="helper-text" id="setupHelper">2명 이상이면 방을 만들어 친구에게 링크를 보낼 수 있어요.</div>
+        <button class="primary-btn" id="createBtn">방 만들기 <span class="arrow">→</span></button>
+      </div>
+
+      <!-- VIEW: SOLO -->
+      <div class="view" id="view-solo">
+        <div class="card-title">내 위치 입력</div>
+        <div class="card-headline">집과 회사를 알려주세요.</div>
+        <div class="input-group home">
+          <div class="input-icon">집</div><label>HOME</label>
+          <input type="text" id="soloHome" placeholder="예) 합정동" autocomplete="off"/>
+          <div class="autocomplete" id="ac-soloHome"></div>
+        </div>
+        <button class="swap-btn" id="soloSwap" type="button">↕ 바꾸기</button>
+        <div class="input-group work">
+          <div class="input-icon">회</div><label>OFFICE</label>
+          <input type="text" id="soloWork" placeholder="예) 역삼동" autocomplete="off"/>
+          <div class="autocomplete" id="ac-soloWork"></div>
+        </div>
+        <div class="suggestions">
+          <span style="font-size:12px;color:var(--ink-mute);margin-right:4px;align-self:center;">자주 찾는 곳:</span>
+          <button class="suggestion-chip" data-loc="홍대">홍대</button>
+          <button class="suggestion-chip" data-loc="강남">강남</button>
+          <button class="suggestion-chip" data-loc="성수">성수</button>
+          <button class="suggestion-chip" data-loc="여의도">여의도</button>
+          <button class="suggestion-chip" data-loc="잠실">잠실</button>
+        </div>
+        <button class="primary-btn" id="soloFind">중간지점 찾기 <span class="arrow">→</span></button>
+      </div>
+
+      <!-- VIEW: ROOM -->
+      <div class="view" id="view-room">
+        <div class="room-status">
+          <div class="room-status-text"><strong id="roomProgress">0 / 0</strong>명이 입력했어요</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="sync-badge" id="syncBadge" style="display:none"><div class="sync-dot"></div>실시간</div>
+            <div class="progress-pill" id="roomPill">진행 중</div>
+          </div>
+        </div>
+        <div class="participants" id="participantsList"></div>
+
+        <div id="addSelfSection">
+          <div class="divider">내 위치 입력하기</div>
+          <div class="input-group name compact">
+            <div class="input-icon">이</div>
+            <input type="text" id="myName" placeholder="이름 (예: 지수)" autocomplete="off" maxlength="10"/>
+          </div>
+          <div class="input-group home compact">
+            <div class="input-icon">집</div>
+            <input type="text" id="myHome" placeholder="집 위치 (예: 합정동)" autocomplete="off"/>
+            <div class="autocomplete" id="ac-myHome"></div>
+          </div>
+          <div class="input-group work compact">
+            <div class="input-icon">회</div>
+            <input type="text" id="myWork" placeholder="회사 위치 (예: 역삼동)" autocomplete="off"/>
+            <div class="autocomplete" id="ac-myWork"></div>
+          </div>
+          <button class="primary-btn" id="addMeBtn" style="margin-top:12px">나 추가하기 <span class="arrow">→</span></button>
+        </div>
+
+        <div id="shareSection" style="display:none">
+          <div class="divider">공유 링크</div>
+          <div class="share-box">
+            <div class="share-label">📨 친구들에게 이 링크를 보내주세요</div>
+            <div class="share-row">
+              <input type="text" id="shareLink" readonly/>
+              <button class="copy-btn" id="copyBtn">복사</button>
+            </div>
+            <div class="share-hint">친구가 링크를 열면 자동으로 이 방에 연결돼요. 각자 위치를 입력하면 실시간으로 반영됩니다.</div>
+          </div>
+          <button class="primary-btn" id="findGroupBtn">
+            <span id="findBtnLabel">지금까지 입력된 곳으로 중간지점 찾기</span>
+            <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="results" id="results">
+    <div class="results-header">
+      <h2>모두의 중간은 <span class="pin" id="midName">—</span> 근처예요</h2>
+      <div class="results-meta"><strong id="participantCount">—</strong>명의 위치를 종합 · 가까운 핫플 <strong id="spotCount">—</strong>곳을 추렸어요</div>
+      <div class="participants-summary" id="participantsSummary"></div>
+    </div>
+    <div class="spot-tabs" id="spotTabs"></div>
+    <div id="spotContents"></div>
+  </section>
+
+  <footer>
+    <div>© 2026 MidPoint — 만남이 더 가까워지는 곳</div>
+    <div>Made for friends</div>
+  </footer>
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- 로그인 모달 -->
+<div class="auth-modal-bg" id="authModalBg">
+  <div class="auth-modal">
+    <div class="auth-modal-logo">M</div>
+    <h2>중간지점에 오신 걸 환영해요</h2>
+    <p>로그인하면 투표 기록이 저장되고<br/>내가 만든 방 히스토리를 볼 수 있어요.</p>
+    <button class="auth-google-btn" id="googleLoginBtn">
+      <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Google로 계속하기
+    </button>
+    <button class="auth-skip" id="authSkipBtn">로그인 없이 계속하기</button>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, remove, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+/* ── Firebase ── */
+const firebaseConfig = {
+  apiKey:"AIzaSyCX6Mgt-9YdZZB8qH11cKfCljgC9s4L7Nw",
+  authDomain:"midpoint-app-e0466.firebaseapp.com",
+  databaseURL:"https://midpoint-app-e0466-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"midpoint-app-e0466",
+  storageBucket:"midpoint-app-e0466.firebasestorage.app",
+  messagingSenderId:"525046025757",
+  appId:"1:525046025757:web:d33aa110547d569cad40f4"
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+/* ── 카카오맵 동적 로드 ── */
+function loadKakaoMap() {
+  return new Promise(function(resolve) {
+    if (typeof kakao !== 'undefined' && kakao.maps) { resolve(); return; }
+    var s = document.createElement('script');
+    s.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=6c3db2ad758c567caad73b451cd50522&libraries=services&autoload=false';
+    s.onload = function() { kakao.maps.load(resolve); };
+    s.onerror = function() { resolve(); };
+    document.head.appendChild(s);
+  });
+}
+
+/* ── 장소 데이터 ── */
+const SPOTS=[
+  {name:'강남역',lat:37.4979,lng:127.0276,desc:'약속의 디폴트. 어디서든 접근성 좋고, 늦게까지 열려있는 곳이 많아요.',vibes:['지하철 환승 편리','회식·정장 OK','늦은 시간'],
+   food:[{name:'미트큐브',genre:'스테이크 · 양식',desc:'두툼한 큐브 스테이크가 시그니처.',rating:4.6,price:'₩₩₩',tags:['스테이크','회식']},{name:'하야시라이스 본점',genre:'경양식',desc:'직장인 점심 줄 서는 곳.',rating:4.5,price:'₩',tags:['혼밥','점심']},{name:'봉피양 강남',genre:'평양냉면',desc:'슴슴한 육수의 정석.',rating:4.4,price:'₩₩',tags:['냉면','어른픽']},{name:'몽탄 강남',genre:'우대갈비',desc:'짚불 우대갈비의 본점. 예약 필수.',rating:4.7,price:'₩₩₩',tags:['고기','예약']},{name:'딘타이펑 강남',genre:'딤섬 · 중식',desc:'샤오롱바오 무난한 픽.',rating:4.3,price:'₩₩',tags:['딤섬','데이트']}],
+   cafe:[{name:'커피리브레 강남',genre:'스페셜티 커피',desc:'에스프레소 한 잔으로 깔끔하게.',rating:4.5,price:'₩₩',tags:['작업','드립']},{name:'블루보틀 신논현',genre:'커피',desc:'한 잔 천천히.',rating:4.4,price:'₩₩',tags:['감성','잠깐']},{name:'폴바셋 강남파이낸스',genre:'카페',desc:'회의용 좌석 넉넉.',rating:4.2,price:'₩₩',tags:['미팅','넓음']},{name:'카페 마마스 강남',genre:'브런치 카페',desc:'리코타 샐러드와 파니니.',rating:4.3,price:'₩₩',tags:['브런치','샐러드']},{name:'나무사이로 강남',genre:'로스터리',desc:'한적한 골목 안 로스터리.',rating:4.6,price:'₩₩',tags:['조용함','로스터리']}]},
+  {name:'홍대 · 연남동',lat:37.5563,lng:126.9220,desc:'연남동 골목의 작은 가게들과 홍대의 활기, 둘 다 누릴 수 있는 동네.',vibes:['젊은 분위기','주차는 어려움','연트럴파크'],
+   food:[{name:'연남토마',genre:'이자카야',desc:'늦게까지 열어요.',rating:4.5,price:'₩₩',tags:['이자카야','술']},{name:'교토미식 연남',genre:'일식',desc:'오므라이스와 가츠동의 정석.',rating:4.4,price:'₩₩',tags:['일식','점심']},{name:'연남방앗간',genre:'한식 브런치',desc:'들기름 막국수가 시그니처.',rating:4.6,price:'₩₩',tags:['한식','감성']},{name:'와카메소바 연남',genre:'소바',desc:'쯔케멘식 미역 소바.',rating:4.3,price:'₩',tags:['소바','혼밥']},{name:'오방떡 소녀 본점',genre:'디저트 · 분식',desc:'갓 구운 오방떡과 떡볶이.',rating:4.2,price:'₩',tags:['디저트','산책']}],
+   cafe:[{name:'프릳츠 도화',genre:'베이커리 카페',desc:'바삭한 페이스트리와 콜드브루.',rating:4.6,price:'₩₩',tags:['베이커리','베스트']},{name:'커피리브레 연남',genre:'스페셜티 커피',desc:'커피만 보고 가도 후회 없음.',rating:4.7,price:'₩₩',tags:['드립','로스터리']},{name:'안녕커피 본점',genre:'카페',desc:'연트럴파크 옆. 야외석 추천.',rating:4.3,price:'₩',tags:['야외','뷰']},{name:'머케널리 연남',genre:'브런치 카페',desc:'아몬드 크루아상이 명물.',rating:4.4,price:'₩₩',tags:['브런치','크루아상']},{name:'미뉴트빠삐용',genre:'디저트 카페',desc:'몽블랑이 시그니처.',rating:4.5,price:'₩₩',tags:['디저트','달콤']}]},
+  {name:'성수동',lat:37.5446,lng:127.0560,desc:'공장지대가 카페·편집숍으로. 요즘 가장 뜨거운 동네 중 하나.',vibes:['요즘 핫플','편집숍·팝업','걷기 좋음'],
+   food:[{name:'소문난성수감자탕',genre:'한식',desc:'뼈해장국으로 든든하게.',rating:4.4,price:'₩₩',tags:['한식','해장']},{name:'성수족발',genre:'족발',desc:'쫀득한 족발 한 접시.',rating:4.3,price:'₩₩',tags:['족발','술']},{name:'미미면가 성수',genre:'쌀국수',desc:'진한 양지 쌀국수.',rating:4.5,price:'₩',tags:['쌀국수','혼밥']},{name:'오빠닭 성수',genre:'치킨 · 호프',desc:'바삭한 치킨에 생맥주.',rating:4.2,price:'₩₩',tags:['치킨','맥주']},{name:'리치몬드제과 성수점',genre:'베이커리 · 식사',desc:'식사빵부터 디저트까지.',rating:4.4,price:'₩₩',tags:['빵','픽업']}],
+   cafe:[{name:'센터커피 성수',genre:'스페셜티 커피',desc:'높은 천장과 단단한 에스프레소.',rating:4.7,price:'₩₩',tags:['핫플','넓음']},{name:'대림창고 갤러리 카페',genre:'갤러리 카페',desc:'창고를 개조한 거대한 공간.',rating:4.3,price:'₩₩',tags:['포토','감성']},{name:'어니언 성수',genre:'카페 · 베이커리',desc:'판도르가 명물.',rating:4.6,price:'₩₩',tags:['빵','베스트']},{name:'메쉬커피',genre:'테이크아웃 카페',desc:'거리에서 한 잔.',rating:4.5,price:'₩',tags:['테이크아웃','커피']},{name:'레이어드 성수',genre:'디저트 카페',desc:'스콘과 클로티드 크림.',rating:4.4,price:'₩₩',tags:['스콘','애프터눈']}]},
+  {name:'이태원 · 한남',lat:37.5347,lng:126.9947,desc:'글로벌한 식문화와 편집숍. 어른의 데이트, 미식 모임에 잘 어울려요.',vibes:['다양한 국가요리','편집숍','나이트라이프'],
+   food:[{name:'바토스 이태원',genre:'멕시칸',desc:'타코와 마르가리타.',rating:4.5,price:'₩₩',tags:['타코','데이트']},{name:'발리인 서울',genre:'인도네시안',desc:'나시고렝과 사테.',rating:4.3,price:'₩₩',tags:['이국','매콤']},{name:'리틀넥 한남',genre:'아메리칸 다이닝',desc:'버거와 굴, 와인까지.',rating:4.4,price:'₩₩₩',tags:['브런치','와인']},{name:'소이연남 한남',genre:'태국식',desc:'팟타이와 똠얌.',rating:4.4,price:'₩₩',tags:['태국','매콤']},{name:'맥심 베이커리 한남',genre:'베이커리 · 다이닝',desc:'브런치 평일에도 줄.',rating:4.5,price:'₩₩',tags:['브런치','베이커리']}],
+   cafe:[{name:'오르에르 한남',genre:'카페 · 셀렉트숍',desc:'편집숍과 결합된 공간.',rating:4.5,price:'₩₩',tags:['편집숍','감성']},{name:'콤포타블 한남',genre:'카페',desc:'플랫화이트가 단단해요.',rating:4.6,price:'₩₩',tags:['커피','조용함']},{name:'카페 노티드 한남',genre:'디저트 카페',desc:'도넛과 우유.',rating:4.3,price:'₩₩',tags:['도넛','달콤']},{name:'펠트커피 한남',genre:'스페셜티 커피',desc:'핸드드립 다양.',rating:4.7,price:'₩₩',tags:['드립','로스터리']},{name:'루이비통 메종 도산 — 카페',genre:'컨셉 카페',desc:'예약 필수. 특별한 날 픽.',rating:4.4,price:'₩₩₩',tags:['예약','특별']}]},
+  {name:'광화문 · 종로',lat:37.5704,lng:126.9826,desc:'서울의 정중앙. 회식·가족모임·외부미팅 모두 무난한 베이스캠프.',vibes:['전통있는 노포','직장인','경복궁'],
+   food:[{name:'교보문고 옆 진주집',genre:'콩국수',desc:'여름엔 콩국수.',rating:4.5,price:'₩',tags:['콩국수','노포']},{name:'광화문 미진',genre:'메밀국수',desc:'시원한 메밀과 만두.',rating:4.4,price:'₩',tags:['메밀','점심']},{name:'북촌 손만두',genre:'만두',desc:'큼직한 손만두.',rating:4.3,price:'₩',tags:['만두','산책']},{name:'청계천 옥미식당',genre:'한식 정식',desc:'한정식 코스 가성비.',rating:4.4,price:'₩₩',tags:['한정식','접대']},{name:'광화문국밥',genre:'국밥',desc:'깔끔한 돼지국밥.',rating:4.5,price:'₩',tags:['국밥','해장']}],
+   cafe:[{name:'커피한약방',genre:'한옥 카페',desc:'한옥의 정취.',rating:4.6,price:'₩₩',tags:['한옥','감성']},{name:'파스쿠찌 광화문점',genre:'카페',desc:'회의용 자리 넉넉.',rating:4.1,price:'₩₩',tags:['미팅','넓음']},{name:'레이어드 종로',genre:'베이커리 카페',desc:'스콘으로 유명.',rating:4.4,price:'₩₩',tags:['스콘','브런치']},{name:'테라로사 광화문',genre:'스페셜티 커피',desc:'커피와 디저트가 단단함.',rating:4.5,price:'₩₩',tags:['작업','드립']},{name:'D MUSEUM 카페',genre:'미술관 카페',desc:'전시 보고 나와서 한 잔.',rating:4.3,price:'₩₩',tags:['전시','조용함']}]},
+  {name:'여의도',lat:37.5219,lng:126.9241,desc:'한강뷰와 더현대. 직장인 약속과 산책 데이트 모두 좋아요.',vibes:['한강','더현대 서울','직장인'],
+   food:[{name:'진주집 여의도',genre:'콩국수',desc:'여의도 노포.',rating:4.5,price:'₩',tags:['콩국수','노포']},{name:'여의도 정인면옥',genre:'평양냉면',desc:'담백한 한 그릇.',rating:4.3,price:'₩₩',tags:['냉면','어른픽']},{name:'오레노라멘 더현대',genre:'일식 라멘',desc:'진한 돈코츠.',rating:4.4,price:'₩₩',tags:['라멘','쇼핑']},{name:'쿠킹스튜디오 여의도',genre:'양식',desc:'파스타와 와인.',rating:4.3,price:'₩₩',tags:['파스타','데이트']},{name:'백년옥 여의도',genre:'한정식',desc:'단정한 한식 코스.',rating:4.5,price:'₩₩₩',tags:['한정식','접대']}],
+   cafe:[{name:'한강뷰 카페 어니언 여의도',genre:'브런치 카페',desc:'큰 창과 한강.',rating:4.5,price:'₩₩',tags:['뷰','포토']},{name:'카멜커피 더현대',genre:'스페셜티 커피',desc:'쇼핑 중 휴식.',rating:4.4,price:'₩₩',tags:['쇼핑','휴식']},{name:'블루보틀 여의도',genre:'커피',desc:'잠깐 앉기 좋은 자리.',rating:4.3,price:'₩₩',tags:['감성','잠깐']},{name:'나만의커피 여의도',genre:'핸드드립 카페',desc:'조용히 한 잔.',rating:4.4,price:'₩₩',tags:['드립','조용함']},{name:'폴바셋 IFC',genre:'카페',desc:'미팅용 좌석 충분.',rating:4.2,price:'₩₩',tags:['미팅','넓음']}]},
+];
+
+const LOC_INDEX=[
+  {kw:['강남','강남역','강남구','역삼','역삼역','테헤란로','삼성','삼성역','선릉','코엑스'],lat:37.4979,lng:127.0276},
+  {kw:['대치','대치동','대치역','은마','개포','일원','수서','수서역'],lat:37.4944,lng:127.0626},
+  {kw:['서초','서초동','서초역','서초구','양재','양재역','남부터미널'],lat:37.4837,lng:127.0324},
+  {kw:['교대','교대역','반포','잠원','잠원역','고속터미널','신반포'],lat:37.4937,lng:127.0138},
+  {kw:['도곡','도곡역','매봉','학여울','대청'],lat:37.4906,lng:127.0570},
+  {kw:['방배','방배역','방배동','사당','사당역'],lat:37.4811,lng:126.9973},
+  {kw:['잠실','잠실역','잠실동','송파','송파구','석촌','롯데월드','잠실새내','송리단길'],lat:37.5133,lng:127.1000},
+  {kw:['가락','가락동','가락시장역','문정','문정동','장지','위례'],lat:37.4933,lng:127.1140},
+  {kw:['강동','강동역','강동구','천호','천호역','암사','암사역','길동','명일','고덕'],lat:37.5388,lng:127.1238},
+  {kw:['올림픽공원','올림픽공원역','몽촌토성','방이','오금','오금역'],lat:37.5153,lng:127.1178},
+  {kw:['마천','마천역','거여','둔촌','둔촌동'],lat:37.4934,lng:127.1562},
+  {kw:['신사','신사역','신사동','가로수길','압구정','압구정동','청담','청담동'],lat:37.5199,lng:127.0231},
+  {kw:['논현','논현역','논현동','학동','강남구청','강남구청역','뚝섬유원지'],lat:37.5119,lng:127.0237},
+  {kw:['청담역','삼성중앙','봉은사','선정릉'],lat:37.5239,lng:127.0536},
+  {kw:['광화문','광화문역','종로','종로구','경복궁','북촌','삼청','안국','인사동'],lat:37.5704,lng:126.9826},
+  {kw:['을지로','시청','시청역','명동','명동역','회현','충무로','중구'],lat:37.5663,lng:126.9779},
+  {kw:['동대문','동대문역','청량리','청량리역','회기','외대앞','신이문','동대문구'],lat:37.5806,lng:127.0449},
+  {kw:['혜화','혜화역','대학로'],lat:37.5824,lng:127.0016},
+  {kw:['종로3가','종로5가','동묘','창신'],lat:37.5722,lng:127.0182},
+  {kw:['이태원','이태원역','한남','한남동','한강진','경리단','녹사평','용산','용산구'],lat:37.5347,lng:126.9947},
+  {kw:['신용산','신용산역','용리단','삼각지','효창공원'],lat:37.5295,lng:126.9648},
+  {kw:['서울역','남영','숙대입구','이촌','이촌역'],lat:37.5547,lng:126.9707},
+  {kw:['서빙고','서빙고역','서빙고동','신서빙고','동빙고'],lat:37.5219,lng:126.9964},
+  {kw:['온누리교회','이태원온누리','서빙고온누리'],lat:37.5248,lng:126.9998},
+  {kw:['홍대','홍대입구','홍대입구역','마포구','홍익','연남','연남동','상수'],lat:37.5563,lng:126.9220},
+  {kw:['합정','합정역','망원','망원역','망원동'],lat:37.5494,lng:126.9136},
+  {kw:['마포','마포역','공덕','공덕역','대흥','대흥역','애오개','충정로'],lat:37.5447,lng:126.9520},
+  {kw:['상암','상암동','상암역','월드컵경기장','DMC','디지털미디어시티','수색','증산'],lat:37.5783,lng:126.8916},
+  {kw:['신촌','신촌역','이대','이화','연대','연세대'],lat:37.5550,lng:126.9368},
+  {kw:['은평','은평구','연신내','불광','구파발','녹번','응암'],lat:37.6194,lng:126.9225},
+  {kw:['서대문','서대문구','홍제','홍은','독립문','무악재'],lat:37.5791,lng:126.9368},
+  {kw:['성수','성수역','성수동','뚝섬','뚝섬역','서울숲','성동구'],lat:37.5446,lng:127.0560},
+  {kw:['왕십리','왕십리역','마장','행당'],lat:37.5613,lng:127.0369},
+  {kw:['건대','건대입구','건국대','자양','광진구','구의'],lat:37.5402,lng:127.0696},
+  {kw:['강변','강변역','잠실나루','화양','중곡'],lat:37.5308,lng:127.1021},
+  {kw:['군자','어린이대공원','아차산'],lat:37.5579,lng:127.0786},
+  {kw:['노원','노원역','노원구','상계','중계','하계','월계'],lat:37.6542,lng:127.0568},
+  {kw:['창동','창동역','도봉','도봉구','쌍문','방학','도봉산'],lat:37.6528,lng:127.0473},
+  {kw:['수유','강북','강북구','미아','미아사거리'],lat:37.6377,lng:127.0251},
+  {kw:['중랑','중랑구','상봉','상봉역','망우','면목','묵동'],lat:37.5950,lng:127.0872},
+  {kw:['태릉','태릉입구','공릉','화랑대','신내'],lat:37.6244,lng:127.0756},
+  {kw:['성북','성북구','길음','돌곶이','월곡','보문'],lat:37.6076,lng:127.0249},
+  {kw:['정릉','성신여대','한성대','삼선교'],lat:37.5926,lng:127.0165},
+  {kw:['고려대','고려대역','안암','제기동','경희대'],lat:37.5882,lng:127.0307},
+  {kw:['답십리','장한평','용답','신답'],lat:37.5714,lng:127.0583},
+  {kw:['동작','동작구','노량진','흑석','상도','장승배기'],lat:37.5000,lng:126.9803},
+  {kw:['이수','총신대입구','남성'],lat:37.4869,lng:126.9818},
+  {kw:['관악','관악구','신림','서울대','서울대입구','봉천','낙성대'],lat:37.4784,lng:126.9516},
+  {kw:['신대방','보라매','신풍','대림','구로디지털'],lat:37.4876,lng:126.9133},
+  {kw:['영등포','영등포역','영등포구','여의도','여의도역','당산','문래'],lat:37.5219,lng:126.9241},
+  {kw:['구로','구로역','구로구','신도림'],lat:37.5044,lng:126.8890},
+  {kw:['가산','가산디지털단지','금천','금천구','독산'],lat:37.4810,lng:126.8826},
+  {kw:['광명','광명역','철산','광명사거리'],lat:37.4793,lng:126.8639},
+  {kw:['강서','강서구','마곡','마곡역','마곡나루','발산','방화'],lat:37.5572,lng:126.8297},
+  {kw:['가양','가양역','화곡','까치산','등촌'],lat:37.5605,lng:126.8548},
+  {kw:['목동','목동역','양천','양천구','신정','오목교'],lat:37.5266,lng:126.8755},
+  {kw:['김포공항','김포공항역','개화'],lat:37.5623,lng:126.8012},
+  {kw:['안양','안양역','안양시'],lat:37.3942,lng:126.9549},
+  {kw:['평촌','평촌역','범계','범계역','인덕원'],lat:37.3945,lng:126.9625},
+  {kw:['군포','군포시','산본','산본역'],lat:37.3605,lng:126.9286},
+  {kw:['의왕','의왕시','의왕역'],lat:37.3447,lng:126.9689},
+  {kw:['수원','수원역','수원시','팔달구','장안구'],lat:37.2665,lng:127.0001},
+  {kw:['영통','영통역','영통구','망포'],lat:37.2512,lng:127.0597},
+  {kw:['광교','광교역','광교중앙','이의동'],lat:37.2894,lng:127.0502},
+  {kw:['동탄','동탄역','화성동탄'],lat:37.2098,lng:127.0747},
+  {kw:['화성','화성시','병점','병점역'],lat:37.2055,lng:126.9827},
+  {kw:['오산','오산역','오산시','세마'],lat:37.1520,lng:127.0766},
+  {kw:['용인','용인시','기흥','기흥역','기흥구'],lat:37.2753,lng:127.1147},
+  {kw:['수지','수지구','죽전','죽전역','보정'],lat:37.3219,lng:127.0981},
+  {kw:['분당','분당구','서현','수내','정자','미금'],lat:37.3826,lng:127.1166},
+  {kw:['판교','판교역','판교테크노밸리'],lat:37.3946,lng:127.1112},
+  {kw:['야탑','야탑역','모란','모란역','성남','성남시'],lat:37.4333,lng:127.1291},
+  {kw:['과천','과천시','과천역','대공원','경마공원'],lat:37.4261,lng:126.9878},
+  {kw:['안산','안산시','안산역','고잔','상록수','한대앞'],lat:37.3161,lng:126.8012},
+  {kw:['시흥','시흥시','정왕','오이도'],lat:37.3810,lng:126.8030},
+  {kw:['하남','하남시','미사','미사역'],lat:37.5378,lng:127.2129},
+  {kw:['구리','구리시','구리역'],lat:37.5939,lng:127.1297},
+  {kw:['남양주','남양주시','별내','다산','퇴계원'],lat:37.6280,lng:127.2146},
+  {kw:['의정부','의정부시','의정부역'],lat:37.7381,lng:127.0451},
+  {kw:['양주','양주시','양주역'],lat:37.7902,lng:127.0456},
+  {kw:['동두천','동두천시','소요산'],lat:37.9307,lng:127.0594},
+  {kw:['일산','일산동구','일산서구','대화','주엽','정발산','마두','킨텍스'],lat:37.6760,lng:126.7706},
+  {kw:['고양','고양시','화정','원당','삼송','덕양구'],lat:37.6283,lng:126.8533},
+  {kw:['파주','파주시','운정','운정역'],lat:37.7069,lng:126.7713},
+  {kw:['김포','김포시','장기','구래','걸포'],lat:37.6150,lng:126.7154},
+  {kw:['인천','인천시','인천역','동인천','부평','구월'],lat:37.4563,lng:126.7052},
+  {kw:['송도','송도국제도시','인천대','인천대입구','연수','연수구'],lat:37.3827,lng:126.6565},
+  {kw:['청라','청라국제도시','검단'],lat:37.5414,lng:126.6478},
+  {kw:['주안','주안역','간석','제물포'],lat:37.4691,lng:126.7100},
+  {kw:['천안','천안시','천안역','천안아산','아산','아산역'],lat:36.8094,lng:127.1473},
+];
+
+/* ── 유틸 ── */
+function G(id) { return document.getElementById(id); }
+function Q(sel) { return document.querySelector(sel); }
+function QA(sel) { return Array.from(document.querySelectorAll(sel)); }
+
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function toast(msg) {
+  var t = G('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(function() { t.classList.remove('show'); }, 2400);
+}
+
+function geocode(name) {
+  if (!name) return null;
+  var q = name.replace(/\s+/g,'').toLowerCase();
+  for (var i = 0; i < LOC_INDEX.length; i++) {
+    var e = LOC_INDEX[i];
+    for (var j = 0; j < e.kw.length; j++) {
+      var k = e.kw[j].toLowerCase();
+      if (q.includes(k) || k.includes(q)) return {lat:e.lat, lng:e.lng};
+    }
+  }
+  return null;
+}
+
+function distKm(a, b) {
+  var R=6371, dLat=(b.lat-a.lat)*Math.PI/180, dLng=(b.lng-a.lng)*Math.PI/180;
+  var h = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+
+function centroid(pts) {
+  var lat=0, lng=0;
+  for (var i=0;i<pts.length;i++) { lat+=pts[i].lat; lng+=pts[i].lng; }
+  return {lat:lat/pts.length, lng:lng/pts.length};
+}
+
+function personCenter(p) { return centroid([p.homeCoords, p.workCoords]); }
+
+function rankSpots(mid, max) {
+  return SPOTS.map(function(s) { return Object.assign({}, s, {dist:distKm(mid,s)}); })
+    .sort(function(a,b) { return a.dist-b.dist; }).slice(0,max||3);
+}
+
+function avatarColor(i) {
+  return ['#1a1a1a','#ff6b4a','#2987a3','#7c5cd6','#1f8a3d','#d4a017'][i%6];
+}
+
+function placeHash(spotName, placeName) {
+  var s = spotName + '__' + placeName;
+  var h = 0;
+  for (var i=0; i<s.length; i++) h = (Math.imul(31,h) + s.charCodeAt(i)) | 0;
+  return 'p' + Math.abs(h).toString(36).slice(-8);
+}
+
+/* ── 상태 ── */
+var S = { view:'setup', selectedN:2, roomId:null, myPushKey:null, unsub:null, user:null };
+
+/* ── URL ── */
+function getRoomId() {
+  var h = location.hash.slice(1);
+  return h.startsWith('room=') ? h.slice(5) : null;
+}
+function setRoomHash(id) { history.replaceState(null,'','#room='+id); }
+function shareUrl(id) { return location.origin+location.pathname+'#room='+id; }
+function getMyKey(rid) { return localStorage.getItem('mp_k_'+rid); }
+function setMyKey(rid,k) { localStorage.setItem('mp_k_'+rid,k); }
+function clearMyKey(rid) { localStorage.removeItem('mp_k_'+rid); }
+
+/* ── Autocomplete ── */
+var AC_OPTS = (function() {
+  var seen = {}, opts = [];
+  LOC_INDEX.forEach(function(e) {
+    e.kw.forEach(function(k) {
+      if (!seen[k]) { seen[k]=1; opts.push(k); }
+    });
+  });
+  return opts;
+})();
+
+function setupAC(inputId, dropId) {
+  var input = G(inputId);
+  var dd = G(dropId);
+  if (!input || !dd) return;
+  var ai = -1;
+
+  function render(q) {
+    var sq = q.replace(/\s/g,'').toLowerCase();
+    var m = sq ? AC_OPTS.filter(function(o) { return o.toLowerCase().includes(sq); }).slice(0,6) : [];
+    if (!m.length) { dd.classList.remove('show'); dd.innerHTML=''; return; }
+    dd.innerHTML = m.map(function(v,i) {
+      return '<div class="ac-item'+(i===ai?' active':'')+'" data-val="'+v+'"><strong>'+v+'</strong><span>지역</span></div>';
+    }).join('');
+    dd.classList.add('show');
+  }
+
+  input.addEventListener('input', function() { ai=-1; render(input.value); });
+  input.addEventListener('focus', function() { if (input.value) render(input.value); });
+  input.addEventListener('blur', function() { setTimeout(function() { dd.classList.remove('show'); }, 150); });
+  input.addEventListener('keydown', function(e) {
+    var items = dd.querySelectorAll('.ac-item');
+    if (!items.length) return;
+    if (e.key==='ArrowDown') { e.preventDefault(); ai=(ai+1)%items.length; render(input.value); }
+    else if (e.key==='ArrowUp') { e.preventDefault(); ai=(ai-1+items.length)%items.length; render(input.value); }
+    else if (e.key==='Enter' && ai>=0) { e.preventDefault(); input.value=items[ai].dataset.val; dd.classList.remove('show'); }
+    else if (e.key==='Escape') { dd.classList.remove('show'); }
+  });
+  dd.addEventListener('mousedown', function(e) {
+    var it = e.target.closest('.ac-item');
+    if (it) { input.value=it.dataset.val; dd.classList.remove('show'); }
+  });
+}
+
+/* ── 뷰 전환 ── */
+function showView(name) {
+  S.view = name;
+  QA('.view').forEach(function(v) { v.classList.toggle('active', v.id==='view-'+name); });
+  G('restartBtn').classList.toggle('show', name==='room'||name==='solo');
+  var c = G('cardCorner');
+  if (name==='setup') { c.textContent='START'; c.classList.remove('accent'); }
+  else if (name==='solo') { c.textContent='SOLO'; c.classList.remove('accent'); }
+  else { c.textContent='ROOM'; c.classList.add('accent'); }
+}
+
+/* ── Firebase 구독 ── */
+function subscribeRoom(roomId) {
+  if (S.unsub) { S.unsub(); S.unsub=null; }
+  var unsub = onValue(ref(db,'rooms/'+roomId), function(snap) {
+    renderRoomData(snap.val());
+  });
+  S.unsub = unsub;
+}
+
+function renderRoomData(data) {
+  if (!data) return;
+  var slots = data.slots || {};
+  var list = Object.entries(slots).sort(function(a,b) { return a[0].localeCompare(b[0]); })
+    .map(function(e) { return Object.assign({key:e[0]}, e[1]); });
+  var total = data.n || 2;
+  var added = list.length;
+  var myKey = S.myPushKey;
+
+  G('roomProgress').textContent = added+' / '+total;
+  var pill = G('roomPill');
+  if (added >= total) { pill.textContent='모두 입력 완료'; pill.classList.add('complete'); }
+  else { pill.textContent='진행 중'; pill.classList.remove('complete'); }
+  G('syncBadge').style.display = 'inline-flex';
+
+  // 참여자 목록 (문자열 연결만 사용, 백틱 중첩 없음)
+  var html = '';
+  list.forEach(function(p, i) {
+    var isMe = p.key === myKey;
+    var removeBtn = isMe ? '<button class="participant-remove" data-key="'+p.key+'">×</button>' : '';
+    var meBadge = isMe ? '<span class="me-badge">나</span>' : '';
+    html += '<div class="participant'+(isMe?' me':'')+'">'+
+      '<div class="avatar" style="background:'+avatarColor(i)+'">'+esc((p.n||'?').slice(0,1))+'</div>'+
+      '<div class="participant-info">'+
+        '<div class="participant-name">'+esc(p.n)+meBadge+'</div>'+
+        '<div class="participant-locs">🏠 '+esc(p.h)+'<span class="dot">•</span>🏢 '+esc(p.w)+'</div>'+
+      '</div>'+removeBtn+'</div>';
+  });
+  for (var i=added; i<total; i++) {
+    html += '<div class="participant pending">'+
+      '<div class="avatar">'+(i+1)+'</div>'+
+      '<div class="participant-info">'+
+        '<div class="participant-name">아직 입력 안 함</div>'+
+        '<div class="participant-locs">'+(i+1)+'번째 친구를 기다리는 중…</div>'+
+      '</div></div>';
+  }
+  G('participantsList').innerHTML = html;
+
+  // 삭제 버튼
+  G('participantsList').querySelectorAll('.participant-remove').forEach(function(btn) {
+    btn.addEventListener('click', function() { removeMe(btn.dataset.key); });
+  });
+
+  var meAdded = myKey && list.some(function(p) { return p.key===myKey; });
+  G('addSelfSection').style.display = (added<total && !meAdded) ? 'block' : 'none';
+  G('shareSection').style.display = added>0 ? 'block' : 'none';
+  G('shareLink').value = shareUrl(S.roomId);
+
+  var findBtn = G('findGroupBtn'), lbl = G('findBtnLabel');
+  if (added<2) { lbl.textContent='최소 2명이 필요해요'; findBtn.disabled=true; }
+  else { findBtn.disabled=false; lbl.textContent=added>=total ? added+'명의 중간지점 보기' : '지금까지 '+added+'명으로 중간지점 찾기'; }
+
+  if (added>=total && !G('results').classList.contains('show')) {
+    setTimeout(function() { findGroupFromList(list); }, 600);
+  }
+}
+
+/* ── 방 생성/참여 ── */
+async function createRoom() {
+  if (S.selectedN===1) { showView('solo'); return; }
+  var btn = G('createBtn');
+  btn.disabled = true; btn.textContent = '잠깐만요…';
+  try {
+    var rid = Math.random().toString(36).slice(2,8)+Date.now().toString(36).slice(-4);
+    S.roomId=rid; S.myPushKey=null;
+    await set(ref(db,'rooms/'+rid), {n:S.selectedN, slots:{}});
+    setRoomHash(rid); showView('room'); subscribeRoom(rid);
+    setTimeout(function() { var el=G('myName'); if(el) el.focus(); }, 200);
+  } catch(e) {
+    toast('방 만들기 실패. 인터넷 연결을 확인해주세요.');
+    btn.disabled=false; btn.innerHTML='방 만들기 <span class="arrow">→</span>';
+  }
+}
+
+async function addMe() {
+  // 로그인된 경우 이름 자동 채우기
+  if (S.user && !G('myName').value.trim()) {
+    G('myName').value = S.user.displayName ? S.user.displayName.split(' ')[0] : '';
+  }
+  var name=G('myName').value.trim(), home=G('myHome').value.trim(), work=G('myWork').value.trim();
+  if (!name) { toast('이름을 입력해주세요'); G('myName').focus(); return; }
+  if (!home) { toast('집 위치를 입력해주세요'); G('myHome').focus(); return; }
+  if (!work) { toast('회사 위치를 입력해주세요'); G('myWork').focus(); return; }
+  if (!geocode(home)) { toast('"'+home+'" 위치를 못 찾았어요'); return; }
+  if (!geocode(work)) { toast('"'+work+'" 위치를 못 찾았어요'); return; }
+  var newRef = push(ref(db,'rooms/'+S.roomId+'/slots'));
+  await set(newRef, {n:name, h:home, w:work, ts:Date.now()});
+  S.myPushKey = newRef.key;
+  setMyKey(S.roomId, newRef.key);
+  G('myName').value=''; G('myHome').value=''; G('myWork').value='';
+  toast(name+'님 추가 완료!');
+}
+
+async function removeMe(key) {
+  if (!key || !S.roomId) return;
+  await remove(ref(db,'rooms/'+S.roomId+'/slots/'+key));
+  S.myPushKey=null; clearMyKey(S.roomId);
+  toast('내 정보를 삭제했어요');
+}
+
+async function findGroup() {
+  var snap = await get(ref(db,'rooms/'+S.roomId+'/slots'));
+  var slots = snap.val() || {};
+  var list = Object.entries(slots).sort(function(a,b){return a[0].localeCompare(b[0]);})
+    .map(function(e){return Object.assign({key:e[0]},e[1]);});
+  findGroupFromList(list);
+}
+
+function findGroupFromList(list) {
+  if (!list || list.length<2) { toast('최소 2명이 입력되어야 해요'); return; }
+  var people = list.map(function(p) {
+    return {name:p.n, homeCoords:geocode(p.h), workCoords:geocode(p.w)};
+  }).filter(function(p) { return p.homeCoords && p.workCoords; });
+  if (people.length<2) { toast('유효한 위치가 부족해요'); return; }
+  var mid = centroid(people.map(personCenter));
+  renderResults(people, rankSpots(mid,3), mid);
+}
+
+function findSolo() {
+  var home=G('soloHome').value.trim(), work=G('soloWork').value.trim();
+  if (!home||!work) { toast('두 곳을 모두 입력해주세요'); return; }
+  var hC=geocode(home), wC=geocode(work);
+  if (!hC) { toast('"'+home+'" 위치를 못 찾았어요'); return; }
+  if (!wC) { toast('"'+work+'" 위치를 못 찾았어요'); return; }
+  var person = {name:'나', homeCoords:hC, workCoords:wC};
+  renderResults([person], rankSpots(personCenter(person),3), personCenter(person));
+}
+
+function restart() {
+  G('results').classList.remove('show');
+  stopVoteListeners();
+  if (S.unsub) { S.unsub(); S.unsub=null; }
+  S.roomId=null; S.myPushKey=null;
+  history.replaceState(null,'',location.pathname);
+  showView('setup');
+  ['soloHome','soloWork','myName','myHome','myWork'].forEach(function(id) {
+    var el=G(id); if(el) el.value='';
+  });
+}
+
+/* ── 투표 ── */
+var voteUnsubs = [];
+function stopVoteListeners() { voteUnsubs.forEach(function(u){u();}); voteUnsubs=[]; }
+
+// 이벤트 위임 — onclick 없이 처리
+document.addEventListener('click', async function(e) {
+  var btn = e.target.closest('.vote-btn[data-pid]');
+  if (!btn) return;
+  e.stopPropagation();
+  if (!S.roomId || !S.myPushKey) { toast('방에 참여한 후 투표할 수 있어요'); return; }
+  var placeId = btn.dataset.pid;
+  var rank = parseInt(btn.dataset.rank);
+  // 이 카드의 카테고리+스팟 확인
+  var card = document.getElementById('pc-'+placeId);
+  var myCat = card ? card.dataset.category : '';
+  var mySpot = card ? card.dataset.spotname : '';
+  var snap = await get(ref(db,'rooms/'+S.roomId+'/votes'));
+  var allVotes = snap.val() || {};
+  // 같은 카테고리+스팟에서 같은 순위 해제
+  var pids = Object.keys(allVotes);
+  for (var i=0; i<pids.length; i++) {
+    if (pids[i]===placeId) continue;
+    var oc = document.getElementById('pc-'+pids[i]);
+    if (oc && oc.dataset.category===myCat && oc.dataset.spotname===mySpot && allVotes[pids[i]][S.myPushKey]===rank) {
+      await remove(ref(db,'rooms/'+S.roomId+'/votes/'+pids[i]+'/'+S.myPushKey));
+    }
+  }
+  // 같은 곳 같은 순위 → 취소
+  var myRank = (allVotes[placeId]||{})[S.myPushKey];
+  if (myRank===rank) await remove(ref(db,'rooms/'+S.roomId+'/votes/'+placeId+'/'+S.myPushKey));
+  else await set(ref(db,'rooms/'+S.roomId+'/votes/'+placeId+'/'+S.myPushKey), rank);
+});
+
+function subscribeVotes(roomId, slots) {
+  stopVoteListeners();
+  var unsub = onValue(ref(db,'rooms/'+roomId+'/votes'), function(snap) {
+    renderVoteUIs(snap.val()||{}, slots);
+  });
+  voteUnsubs.push(unsub);
+}
+
+function renderVoteUIs(allVotes, slots) {
+  var myKey = S.myPushKey;
+
+  // 카드별 버튼 + 뱃지 + 칩 업데이트
+  Object.entries(allVotes).forEach(function(entry) {
+    var placeId = entry[0], placeVotes = entry[1];
+    var vv = document.getElementById('vv-'+placeId);
+    if (!vv) return;
+    var myRank = placeVotes[myKey] || 0;
+
+    // 버튼 상태
+    [1,2,3].forEach(function(r) {
+      var b = document.getElementById('vb'+r+'-'+placeId);
+      if (!b) return;
+      b.className = 'vote-btn' + (myRank===r ? ' v'+r : '');
+      // 내가 투표한 버튼에 체크 표시
+      if (myRank===r) b.innerHTML = '&#10003;';
+      else b.innerHTML = String(r);
+    });
+
+    // 카드 테두리 + 상단 순위 뱃지
+    var card = document.getElementById('pc-'+placeId);
+    if (card) {
+      card.className = 'place-card' + (myRank ? ' voted-'+myRank : '');
+      var tag = document.getElementById('vrt-'+placeId);
+      if (tag) {
+        if (myRank) {
+          tag.textContent = myRank;
+          tag.style.display = 'flex';
+        } else {
+          tag.style.display = 'none';
+        }
+      }
+    }
+
+    // 투표자 칩 (이름 + 순위 숫자)
+    var chips = '';
+    Object.entries(placeVotes).forEach(function(ve) {
+      var voter = slots.find(function(s){return s.key===ve[0];}) || {n:'?'};
+      chips += '<span class="v-chip v-chip-'+ve[1]+'">'+esc(voter.n)+' '+ve[1]+'위</span>';
+    });
+    vv.innerHTML = chips;
+  });
+
+  // 투표 없는 카드 초기화
+  document.querySelectorAll('.place-card[id^="pc-"]').forEach(function(card) {
+    var pid = card.id.slice(3);
+    if (!allVotes[pid]) {
+      card.className = 'place-card';
+      [1,2,3].forEach(function(r) {
+        var b = document.getElementById('vb'+r+'-'+pid);
+        if (b) { b.className='vote-btn'; b.innerHTML=String(r); }
+      });
+      var vv = document.getElementById('vv-'+pid); if(vv) vv.innerHTML='';
+      var tag = document.getElementById('vrt-'+pid); if(tag) tag.style.display='none';
+    }
+  });
+
+  // 카테고리별 결과 배너
+  document.querySelectorAll('.vote-result-wrap').forEach(function(wrap) {
+    var parts = wrap.id.split('-');
+    var cat = parts[1];
+    var scores = {}, names = {}, voters = {};
+
+    document.querySelectorAll('.place-card[data-category="'+cat+'"]').forEach(function(card) {
+      var pid = card.id.slice(3);
+      var nm = card.querySelector('.place-name');
+      if (!nm) return;
+      names[pid] = nm.textContent;
+      scores[pid] = 0;
+      voters[pid] = [];
+      if (allVotes[pid]) {
+        Object.entries(allVotes[pid]).forEach(function(ve) {
+          scores[pid] += (4 - ve[1]);
+          var voter = slots.find(function(s){return s.key===ve[0];}) || {n:'?'};
+          voters[pid].push(voter.n + ' ' + ve[1] + '위');
+        });
+      }
+    });
+
+    var ranked = Object.keys(scores)
+      .filter(function(p){ return scores[p] > 0; })
+      .sort(function(a,b){ return scores[b]-scores[a]; });
+
+    if (!ranked.length) { wrap.innerHTML=''; return; }
+
+    var numColors = ['#1a1a1a','#ff6b4a','#aaa'];
+    var rankClass = ['rank-1','rank-2','rank-3'];
+    var html = '<div class="vote-result-banner">';
+    html += '<div class="vote-result-title">'+(cat==='food'?'🍽 맛집':'☕ 카페')+' 투표 결과</div>';
+    html += '<div class="vote-result-list">';
+
+    var shown=0, prev=-1, dRank=0;
+    ranked.forEach(function(pid) {
+      if (shown >= 3) return;
+      if (scores[pid] !== prev) { dRank++; prev=scores[pid]; }
+      if (dRank > 3) return;
+      html += '<div class="vote-result-item '+rankClass[dRank-1]+'">';
+      html += '<div class="vote-result-num">'+dRank+'</div>';
+      html += '<div style="flex:1">';
+      html += '<div class="vote-result-name">'+esc(names[pid])+'</div>';
+      html += '<div class="vote-result-voters">'+voters[pid].join(' · ')+'</div>';
+      html += '</div>';
+      html += '<div class="vote-result-score">'+scores[pid]+'점</div>';
+      html += '</div>';
+      shown++;
+    });
+
+    html += '</div></div>';
+    wrap.innerHTML = html;
+  });
+}
+
+
+function placeCard(p, rank, spotName, category) {
+  var q = encodeURIComponent(p.name);
+  var cat = category || 'food';
+  var pid = placeHash(spotName + '_' + cat, p.name);
+  var tags = p.tags.map(function(t) { return '<span class="place-tag">#'+esc(t)+'</span>'; }).join('');
+  return (
+    '<div class="place-card" id="pc-'+pid+'" data-category="'+cat+'" data-spotname="'+esc(spotName)+'" style="position:relative">' +
+      '<div class="vote-rank-tag" id="vrt-'+pid+'"></div>' +
+      '<div class="place-rank">NO. '+String(rank).padStart(2,'0')+'</div>' +
+      '<div class="place-body">' +
+        '<div class="place-name">'+esc(p.name)+'</div>' +
+        '<div class="place-genre">'+esc(p.genre)+'</div>' +
+        '<div class="place-desc">'+esc(p.desc)+'</div>' +
+        '<div class="place-tags">'+tags+'</div>' +
+        '<div class="place-meta">' +
+          '<div class="place-rating"><span class="star">★</span> '+p.rating+'</div>' +
+          '<div class="place-price">'+p.price+'</div>' +
+        '</div>' +
+        '<div class="vote-area">' +
+          '<div class="vote-label">이 곳 순위 투표</div>' +
+          '<div class="vote-btn-row">' +
+            '<button class="vote-btn" id="vb1-'+pid+'" data-pid="'+pid+'" data-rank="1" title="1순위">1</button>' +
+            '<button class="vote-btn" id="vb2-'+pid+'" data-pid="'+pid+'" data-rank="2" title="2순위">2</button>' +
+            '<button class="vote-btn" id="vb3-'+pid+'" data-pid="'+pid+'" data-rank="3" title="3순위">3</button>' +
+            '<a class="vote-map-btn" href="https://map.kakao.com/link/search/'+q+'" target="_blank" title="카카오맵">🗺️</a>' +
+          '</div>' +
+          '<div class="vote-voters" id="vv-'+pid+'"></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>'
+  );
+}
+
+
+function renderSpotContent(spot, active, idx) {
+  var kq = encodeURIComponent(spot.name);
+  var nq = encodeURIComponent(spot.name);
+  var vibes = spot.vibes.map(function(v) { return '<span class="vibe-tag">'+v+'</span>'; }).join('');
+  var foodCards = spot.food.map(function(p,i) { return placeCard(p, i+1, spot.name, 'food'); }).join('');
+  var cafeCards = spot.cafe.map(function(p,i) { return placeCard(p, i+1, spot.name, 'cafe'); }).join('');
+  return '<div class="spot-content '+(active?'active':'')+'" data-idx="'+idx+'">' +
+    '<div class="spot-hero">' +
+      '<div class="spot-hero-left">' +
+        '<h3>'+spot.name+'</h3>' +
+        '<p>'+spot.desc+'</p>' +
+        '<div class="spot-vibes">'+vibes+'</div>' +
+      '</div>' +
+      '<div class="map-panel">' +
+        '<div class="kakao-map-box" id="kmap-'+idx+'"></div>' +
+        '<div class="map-links">' +
+          '<a class="map-link-btn" href="https://map.kakao.com/link/search/'+kq+'" target="_blank">🟡 카카오맵</a>' +
+          '<a class="map-link-btn" href="https://map.naver.com/v5/search/'+nq+'" target="_blank">🟢 네이버맵</a>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="category"><div class="category-header"><div class="category-title"><div class="category-icon food">🍽</div><h4>맛집 BEST 5</h4></div><div class="category-count">큐레이션 5곳</div></div>' +
+    '<div class="place-grid">'+foodCards+'</div>' +
+    '<div id="vr-food-'+idx+'" class="vote-result-wrap"></div></div>' +
+    '<div class="category"><div class="category-header"><div class="category-title"><div class="category-icon cafe">☕</div><h4>카페 BEST 5</h4></div><div class="category-count">큐레이션 5곳</div></div>' +
+    '<div class="place-grid">'+cafeCards+'</div>' +
+    '<div id="vr-cafe-'+idx+'" class="vote-result-wrap"></div></div>' +
+  '</div>';
+}
+
+async function renderResults(people, spots, mid) {
+  var res = G('results');
+  res.classList.add('show');
+  G('midName').textContent = spots[0].name;
+  G('participantCount').textContent = people.length;
+  G('spotCount').textContent = spots.length;
+
+  var chips = '';
+  people.forEach(function(p,i) {
+    chips += '<div class="p-chip"><div class="avatar" style="background:'+avatarColor(i)+'">'+esc((p.name||'?').slice(0,1))+'</div>'+esc(p.name||'참여자'+(i+1))+'</div>';
+  });
+  G('participantsSummary').innerHTML = chips;
+
+  var tabs = '';
+  spots.forEach(function(s,i) {
+    tabs += '<button class="spot-tab '+(i===0?'active':'')+'" data-idx="'+i+'">'+s.name+'<span class="distance">'+s.dist.toFixed(1)+'km</span></button>';
+  });
+  G('spotTabs').innerHTML = tabs;
+  G('spotContents').innerHTML = spots.map(function(s,i) { return renderSpotContent(s,i===0,i); }).join('');
+
+  QA('.spot-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var idx = tab.dataset.idx;
+      QA('.spot-tab').forEach(function(t){t.classList.toggle('active',t.dataset.idx===idx);});
+      QA('.spot-content').forEach(function(c){c.classList.toggle('active',c.dataset.idx===idx);});
+      setTimeout(function(){ if(kakaoMaps['kmap-'+idx]) kakaoMaps['kmap-'+idx].relayout(); }, 50);
+    });
+  });
+
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+
+  // 지도 초기화
+  loadKakaoMap().then(function() {
+    spots.forEach(function(s,i) { initKakaoMap('kmap-'+i, people, s, mid); });
+  });
+
+  // 투표 구독
+  if (S.roomId) {
+    var snap = await get(ref(db,'rooms/'+S.roomId+'/slots'));
+    var slots = Object.entries(snap.val()||{}).map(function(e){return Object.assign({key:e[0]},e[1]);});
+    subscribeVotes(S.roomId, slots);
+  }
+}
+
+/* ── 카카오맵 ── */
+var kakaoMaps = {};
+function initKakaoMap(mapId, people, spot, mid) {
+  if (typeof kakao==='undefined'||!kakao.maps) {
+    var el=G(mapId); if(el) el.innerHTML='<div class="map-no-key">🗺️ <div>카카오맵 로드 중...</div></div>';
+    return;
+  }
+  var container=G(mapId); if(!container) return;
+  var midLL=new kakao.maps.LatLng(mid.lat,mid.lng);
+  var map=new kakao.maps.Map(container,{center:midLL,level:6});
+  kakaoMaps[mapId]=map;
+  people.forEach(function(p,i) {
+    var c=personCenter(p), pos=new kakao.maps.LatLng(c.lat,c.lng);
+    new kakao.maps.CustomOverlay({position:pos,content:'<div style="background:'+avatarColor(i)+';color:white;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;transform:translateY(-100%);margin-bottom:6px">'+esc(p.name)+'</div>',yAnchor:1.4,map:map});
+    new kakao.maps.Polyline({path:[pos,midLL],strokeWeight:2,strokeColor:avatarColor(i),strokeOpacity:0.5,strokeStyle:'shortdash',map:map});
+  });
+  new kakao.maps.CustomOverlay({position:midLL,content:'<div style="background:#ff6b4a;color:white;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:700;transform:translateY(-100%);margin-bottom:8px">📍 '+esc(spot.name)+'</div>',yAnchor:1.3,map:map});
+  var bounds=new kakao.maps.LatLngBounds();
+  people.forEach(function(p){var c=personCenter(p);bounds.extend(new kakao.maps.LatLng(c.lat,c.lng));});
+  bounds.extend(midLL); map.setBounds(bounds,60);
+}
+
+/* ── 인원 선택 ── */
+function selectN(n) {
+  S.selectedN = n;
+  QA('.num-btn').forEach(function(b) { b.classList.toggle('selected', parseInt(b.dataset.n)===n); });
+  var h=G('setupHelper'), btn=G('createBtn');
+  if (n===1) { h.textContent='혼자 가는 길의 중간지점을 찾아드려요.'; btn.innerHTML='시작하기 <span class="arrow">→</span>'; }
+  else { h.textContent=n+'명이서 만나요. 방을 만들면 친구들에게 링크를 보낼 수 있고, 각자 위치를 입력하면 모두의 중간지점을 찾아드려요.'; btn.innerHTML='방 만들기 <span class="arrow">→</span>'; }
+}
+
+/* ── 초기화 ── */
+/* ── 인증 함수 ── */
+function updateAuthUI(user) {
+  S.user = user;
+  var bar = document.getElementById('authBar');
+  if (!bar) return;
+  if (user) {
+    var avatarHtml = user.photoURL
+      ? '<img class="auth-avatar" src="'+user.photoURL+'" alt=""/>'
+      : '<div class="auth-avatar-placeholder">'+esc((user.displayName||'U').slice(0,1))+'</div>';
+    bar.innerHTML =
+      '<div class="auth-user">'+avatarHtml+'<span>'+esc(user.displayName||user.email||'사용자')+'</span></div>' +
+      '<button class="auth-logout-btn" id="logoutBtn">로그아웃</button>';
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      signOut(auth).then(function() { toast('로그아웃했어요'); });
+    });
+  } else {
+    bar.innerHTML =
+      '<button class="auth-login-btn" id="loginBtn">' +
+        '<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>' +
+        '로그인' +
+      '</button>';
+    document.getElementById('loginBtn').addEventListener('click', function() {
+      document.getElementById('authModalBg').classList.add('show');
+    });
+  }
+}
+
+function showAuthModal() {
+  document.getElementById('authModalBg').classList.add('show');
+}
+
+async function googleLogin() {
+  try {
+    var result = await signInWithPopup(auth, googleProvider);
+    document.getElementById('authModalBg').classList.remove('show');
+    toast(result.user.displayName + '님, 환영해요!');
+    // 로그인 후 이름 자동 입력
+    var nameEl = document.getElementById('myName');
+    if (nameEl && !nameEl.value && result.user.displayName) {
+      nameEl.value = result.user.displayName.split(' ')[0];
+    }
+    // Firebase에 유저 정보 저장
+    await set(ref(db, 'users/' + result.user.uid), {
+      name: result.user.displayName || '',
+      email: result.user.email || '',
+      photo: result.user.photoURL || '',
+      lastSeen: Date.now()
+    });
+  } catch(e) {
+    if (e.code !== 'auth/popup-closed-by-user') {
+      toast('로그인 실패: ' + e.message);
+    }
+  }
+}
+
+async function init() {
+  // 인증 이벤트
+  var googleBtn = document.getElementById('googleLoginBtn');
+  if (googleBtn) googleBtn.addEventListener('click', googleLogin);
+  var skipBtn = document.getElementById('authSkipBtn');
+  if (skipBtn) skipBtn.addEventListener('click', function() {
+    document.getElementById('authModalBg').classList.remove('show');
+  });
+  // 모달 바깥 클릭 시 닫기
+  var modalBg = document.getElementById('authModalBg');
+  if (modalBg) modalBg.addEventListener('click', function(e) {
+    if (e.target === modalBg) modalBg.classList.remove('show');
+  });
+  // Auth 상태 감지
+  onAuthStateChanged(auth, function(user) {
+    updateAuthUI(user);
+  });
+
+  // 자동완성
+  setupAC('soloHome','ac-soloHome');
+  setupAC('soloWork','ac-soloWork');
+  setupAC('myHome','ac-myHome');
+  setupAC('myWork','ac-myWork');
+
+  // 인원수 버튼
+  QA('.num-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { selectN(parseInt(btn.dataset.n)); });
+  });
+
+  // 기타 버튼
+  G('createBtn').addEventListener('click', createRoom);
+  G('soloFind').addEventListener('click', findSolo);
+  G('soloSwap').addEventListener('click', function() {
+    var a=G('soloHome').value; G('soloHome').value=G('soloWork').value; G('soloWork').value=a;
+  });
+  G('addMeBtn').addEventListener('click', addMe);
+  G('findGroupBtn').addEventListener('click', findGroup);
+  G('restartBtn').addEventListener('click', restart);
+
+  QA('.suggestion-chip').forEach(function(c) {
+    c.addEventListener('click', function() {
+      if (!G('soloHome').value) G('soloHome').value=c.dataset.loc;
+      else G('soloWork').value=c.dataset.loc;
+    });
+  });
+
+  G('copyBtn').addEventListener('click', async function() {
+    try { await navigator.clipboard.writeText(G('shareLink').value); }
+    catch(e) { G('shareLink').select(); document.execCommand('copy'); }
+    var btn=G('copyBtn'); btn.textContent='복사됨!'; btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='복사';btn.classList.remove('copied');},1800);
+  });
+
+  ['myName','myHome','myWork'].forEach(function(id) {
+    G(id).addEventListener('keydown', function(e) {
+      if (e.key==='Enter' && !document.querySelector('.autocomplete.show')) addMe();
+    });
+  });
+  ['soloHome','soloWork'].forEach(function(id) {
+    G(id).addEventListener('keydown', function(e) {
+      if (e.key==='Enter' && !document.querySelector('.autocomplete.show')) findSolo();
+    });
+  });
+
+  // URL에서 방 ID 읽기
+  var roomId = getRoomId();
+  if (roomId) {
+    var snap = await get(ref(db,'rooms/'+roomId));
+    if (snap.exists()) {
+      S.roomId=roomId; S.myPushKey=getMyKey(roomId);
+      showView('room'); subscribeRoom(roomId);
+    } else {
+      toast('방을 찾을 수 없어요.'); selectN(2); showView('setup');
+    }
+  } else {
+    selectN(2); showView('setup');
+  }
+
+  window.addEventListener('popstate', async function() {
+    var rId = getRoomId();
+    if (rId) {
+      var snap2 = await get(ref(db,'rooms/'+rId));
+      if (snap2.exists()) {
+        S.roomId=rId; S.myPushKey=getMyKey(rId);
+        G('results').classList.remove('show'); showView('room'); subscribeRoom(rId);
+      }
+    }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
